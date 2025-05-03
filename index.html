@@ -1,15 +1,450 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
   <head>
-    <title>kilos's site</title>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>我的个人网站</title>
+    <style>
+      /* 重置基本样式 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8f9fa;
+      }
+
+      a {
+        text-decoration: none;
+        color: #3498db;
+        transition: all 0.3s ease;
+      }
+
+      a:hover {
+        color: #2980b9;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* 布局 */
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      /* 导航栏 */
+      header {
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+      }
+
+      .nav-links a {
+        color: #2c3e50;
+        font-weight: 500;
+      }
+
+      .nav-links a:hover {
+        color: #3498db;
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      /* 英雄区域 */
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+        padding: 100px 0;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 20px;
+        max-width: 700px;
+        margin: 0 auto 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #fff;
+        color: #3498db;
+        padding: 12px 25px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 关于区域 */
+      .about-container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .about-image {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-content {
+        flex: 1;
+      }
+
+      .about-content h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #2c3e50;
+      }
+
+      /* 服务/特性区域 */
+      .features {
+        background-color: #fff;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-header h2 {
+        font-size: 36px;
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      .section-header p {
+        color: #7f8c8d;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .feature-icon {
+        font-size: 40px;
+        color: #3498db;
+        margin-bottom: 20px;
+      }
+
+      .feature-card h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+        color: #2c3e50;
+      }
+
+      /* 项目展示 */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .project-image {
+        height: 200px;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888;
+        font-size: 18px;
+      }
+
+      .project-content {
+        padding: 20px;
+      }
+
+      .project-content h3 {
+        margin-bottom: 10px;
+        color: #2c3e50;
+      }
+
+      .project-content p {
+        color: #7f8c8d;
+        margin-bottom: 15px;
+      }
+
+      /* 联系表单 */
+      .contact {
+        background-color: #f8f9fa;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #2c3e50;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-family: inherit;
+        font-size: 16px;
+      }
+
+      .form-group textarea {
+        height: 150px;
+        resize: vertical;
+      }
+
+      /* 页脚 */
+      footer {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 50px 0 20px;
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .footer-col h3 {
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul li a {
+        color: #bdc3c7;
+      }
+
+      .footer-col ul li a:hover {
+        color: #3498db;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: #fff;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px 0;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          display: none;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links li {
+          margin: 10px 0;
+        }
+
+        .about-container {
+          flex-direction: column;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+        }
+
+        .hero p {
+          font-size: 18px;
+        }
+
+        .section {
+          padding: 40px 0;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>welcome to kilos's site</h1>
-    <p>这是我通过cloudflare pages部署的网站</p>
+    <!-- 导航栏 -->
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">我的网站</div>
+          <div class="menu-toggle">☰</div>
+          <ul class="nav-links">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">项目</a></li>
+            <li><a href="#">博客</a></li>
+            <li><a href="#">联系</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+      <div class="container">
+        <h1>欢迎来到我的个人网站</h1>
+        <p>这里我学习前端的地方</p>
+        <a href="#" class="btn">了解更多</a>
+      </div>
+    </section>
+
+    <!-- 关于部分 -->
+    <section class="section">
+      <div class="container">
+        <div class="about-content">
+          <h2>关于我</h2>
+          <p>你好！我是kilos，如果有空的话，多学习学习。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-col">
+            <h3>我的网站</h3>
+            <p>一个展示我的项目和服务的个人网站。</p>
+          </div>
+
+          <div class="footer-col">
+            <h3>联系方式</h3>
+            <ul>
+              <li>邮箱：jl.liang@foxmail.com</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>关注我</h3>
+            <ul>
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 我的网站. 保留所有权利.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // 简单的导航栏切换功能
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+      });
+    </script>
   </body>
 </html>
-
-
-
-
